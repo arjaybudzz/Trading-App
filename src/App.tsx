@@ -1,10 +1,7 @@
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./login/Login";
 import Register from "./register/Register";
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import Modal from "./register/modal/Modal";
 import DashBoard from "./dashboard/DashBoard";
 import { Confirmation } from "./dashboard/components/Confirmation";

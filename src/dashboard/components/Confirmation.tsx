@@ -1,3 +1,5 @@
+import React from "react"
+
 export const Confirmation = (props: {[key: string]: any}): JSX.Element => {
 
     return <div className='flex flex-col justify-center items-center z-50 bg-black bg-opacity-70 fixed w-screen h-screen'>
