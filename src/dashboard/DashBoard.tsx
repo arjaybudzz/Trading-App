@@ -102,7 +102,7 @@ export default function DashBoard() {
     }
 
     const fetchTrader = async (): Promise<void> => {
-        const url: string = `http://127.0.0.1:3000/api/traders/${localStorage.getItem("traderId")}`;
+        const url: string = `https://trading-app-backend.onrender.com/api/traders/${localStorage.getItem("traderId")}`;
 
         await axios.get(url)
         .then((response: {[key: string]: any}) => {
@@ -113,7 +113,7 @@ export default function DashBoard() {
     }
 
     const fetchPortfolio = async(): Promise<void> => {
-        const url = `http://127.0.0.1:3000/api/traders/${localStorage.getItem("traderId")}`;
+        const url = `https://trading-app-backend.onrender.com/api/traders/${localStorage.getItem("traderId")}`;
 
         await axios.get(url)
         .then(response => {
@@ -126,7 +126,7 @@ export default function DashBoard() {
     }
 
     const generateTIckerToken = async(): Promise<void> => {
-        const url = `http://127.0.0.1:3000/api/ticker_tokens?ticker[symbol]=${ticker}`;
+        const url = `https://trading-app-backend.onrender.com/api/ticker_tokens?ticker[symbol]=${ticker}`;
 
         await axios.post(url)
         .then((response: AxiosResponse<any, any>): void => {
@@ -147,7 +147,7 @@ export default function DashBoard() {
     }
 
     const fetchLatestBalance = async (): Promise<void> => {
-        const url: string = `http://127.0.0.1:3000/api/traders/${localStorage.getItem("traderId")}`;
+        const url: string = `https://trading-app-backend.onrender.com/api/traders/${localStorage.getItem("traderId")}`;
 
         await axios.get(url)
         .then((response: {[key: string]: any}): void => {
@@ -157,7 +157,7 @@ export default function DashBoard() {
     }
 
     const transact = async (price: number): Promise<void> => {
-        const url = `http://127.0.0.1:3000/api/tickers/${localStorage.getItem("tickerId")}`;
+        const url = `https://trading-app-backend.onrender.com/api/tickers/${localStorage.getItem("tickerId")}`;
 
         await axios.put(url, {
             last_price: price,
@@ -175,7 +175,7 @@ export default function DashBoard() {
     }
 
     const updateLatestPrice = async(price: number): Promise<void> => {
-        const url = `http://127.0.0.1:3000/api/tickers/${localStorage.getItem("tickerId")}`;
+        const url = `https://trading-app-backend.onrender.com/api/tickers/${localStorage.getItem("tickerId")}`;
 
         await axios.put(url, {
             latest_price: price,
@@ -190,7 +190,7 @@ export default function DashBoard() {
     }
 
     const acquireStock = async (): Promise<void> => {
-        const url = "http://127.0.0.1:3000/api/tickers";
+        const url = "https://trading-app-backend.onrender.com/api/tickers";
 
         await axios.post(url, {
             symbol: ticker,
@@ -209,7 +209,7 @@ export default function DashBoard() {
     }
 
     const generateTransactionHistory = async(mode: "buy" | "sell"): Promise<void> => {
-        const url = "http://127.0.0.1:3000/api/transactions";
+        const url = "https://trading-app-backend.onrender.com/api/transactions";
 
         await axios.post(url, {
             stock: ticker,

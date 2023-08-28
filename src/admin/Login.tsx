@@ -37,7 +37,7 @@ export default function AdminLogin() {
   });
 
   const submitData = async (data: Data): Promise<void> => {
-    await axios.post(`http://127.0.0.1:3000/api/tokens?admin[email]=${data.email}&admin[password]=${data.password}`).then(response => {
+    await axios.post(`https://trading-app-backend.onrender.com/api/tokens?admin[email]=${data.email}&admin[password]=${data.password}`).then(response => {
       console.log(response);
       localStorage.setItem("adminId", response.data.id);
       localStorage.setItem("adminToken", response.data.token);
