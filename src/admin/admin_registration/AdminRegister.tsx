@@ -32,7 +32,6 @@ export default function AdminRegister() {
     firstName: yup.string().required("Please enter your first name"),
     lastName: yup.string().required("Please enter your last name"),
     email: yup.string().email("Invalid email format").required("Please enter your email"),
-    country: yup.string().required(),
     password: yup.string().required("Please enter password").min(8).max(20),
     passwordConfirmation: yup.string().required("Please confirm your password").oneOf(["password"], "Passwords do not match").min(8).max(20)
   })
