@@ -44,7 +44,7 @@ export default function TraderProfile(props: {[key: string]: any}) {
   })
 
   const fetchTrader = async (): Promise<void> => {
-    const url = `http://127.0.0.1:3000/api/traders/${localStorage.getItem("traderId")}`;
+    const url = `http://0.0.0.0:3000/api/traders/${localStorage.getItem("traderId")}`;
 
     await axios.get(url).then(response => {
       const mainData: {[key: string]: any} = response.data.data.attributes;
@@ -60,7 +60,7 @@ export default function TraderProfile(props: {[key: string]: any}) {
   //console.log(stocks);
 
   const approveTrader = async(): Promise<void> => {
-    const url = `http://127.0.0.1:3000/api/traders/${localStorage.getItem("traderId")}`;
+    const url = `http://0.0.0.0:3000/api/traders/${localStorage.getItem("traderId")}`;
 
     await axios.put(url, {
       approved: true
@@ -96,7 +96,7 @@ export default function TraderProfile(props: {[key: string]: any}) {
   }
 
   const editTrader = async(data: Trader): Promise<void> => {
-    const url = `http://127.0.0.1:3000/api/traders/${localStorage.getItem("traderId")}`;
+    const url = `http://0.0.0.0:3000/api/traders/${localStorage.getItem("traderId")}`;
 
     await axios.put(url, {
       username: data.userName,

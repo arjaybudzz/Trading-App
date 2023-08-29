@@ -38,7 +38,7 @@ export default function Login() {
   });
 
   const submitData = async (data: Data): Promise<void> => {
-    await axios.post(`http://127.0.0.1:3000/api/trader_tokens?trader[email]=${data.email}&trader[password]=${data.password}`).then(response => {
+    await axios.post(`http://0.0.0.0:3000/api/trader_tokens?trader[email]=${data.email}&trader[password]=${data.password}`).then(response => {
       console.log(response);
       localStorage.setItem("traderId", response.data.id);
       localStorage.setItem("traderToken", response.data.trader_token);
