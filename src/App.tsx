@@ -11,6 +11,7 @@ import { Confirmation } from "./dashboard/components/Confirmation";
 import AdminLogin from "./admin/Login";
 import AdminDashboard from "./admin_dashboard/AdminDashboard";
 import TraderProfile from "./admin_dashboard/components/TraderProfile";
+import AdminRegister from "./admin/admin_registration/AdminRegister";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/admin" element={<AdminLogin />}/>
         <Route path="/admin_dashboard" element={<AdminDashboard />}/>
         <Route path="/profile" element={<TraderProfile isAdmin={true} />}/>
+        <Route path="/admin_registration" element={<AdminRegister />}/>
       </Routes>
     </BrowserRouter>
   </div>
