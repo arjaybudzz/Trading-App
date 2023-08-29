@@ -65,7 +65,7 @@ export default function AdminRegister() {
   }
 
   const registerData = async (data: Admin): Promise<void> => {
-    await axios.post("https://trading-app-backend.onrender.com/api/admins", {
+    await axios.post("http://0.0.0.0:3000/api/admins", {
       username: data.userName,
       first_name: data.firstName,
       last_name: data.lastName,

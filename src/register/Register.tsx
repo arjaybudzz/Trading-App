@@ -72,7 +72,7 @@ export default function Register() {
   }
 
   const registerData = async (data: RegisterProfile): Promise<void> => {
-    await axios.post("https://trading-app-backend.onrender.com/api/traders", {
+    await axios.post("http://127.0.0.1:3000/api/traders", {
       username: data.userName,
       first_name: data.firstName,
       last_name: data.lastName,

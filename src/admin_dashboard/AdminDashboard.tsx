@@ -27,7 +27,7 @@ export default function AdminDashboard() {
     const [traderArray, settraderArray] = useState<object[]>([]);
 
     const fetchAdmin = async (): Promise<void> => {
-        const url = `https://trading-app-backend.onrender.com/api/admins/${localStorage.getItem("adminId")}`;
+        const url = `http://0.0.0.0:3000/api/admins/${localStorage.getItem("adminId")}`;
 
         await axios.get(url).then((response) => {
             //console.log(response.data.data.relationships.traders.data);
