@@ -74,7 +74,7 @@ export default function AdminLogin() {
         </div>
       </form>
 
-      <h1 className='text-xl text-white'>Create an admin account <Link to="/admin_register" className='text-sky-500 underline'>here.</Link></h1>
+      <h1 className='text-xl text-white'>Create an admin account <Link to="/admin_registration" className='text-sky-500 underline'>here.</Link></h1>
     </div>
   )
 }
