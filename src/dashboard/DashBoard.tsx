@@ -249,7 +249,7 @@ export default function DashBoard() {
         if (isBuy || isSell) {
             updateLatestPrice(latestPrice);
         }
-    })
+    }, [isBuy, isSell])
 
     useEffect(() => {
         fetchLatestBalance();
@@ -418,17 +418,17 @@ export default function DashBoard() {
 
                         <div className='flex flex-col justify-between mb-6'>
                             <button onClick={() => {
-                                transact(lastPrice);
+                                transact(latestPrice);
                                 setIsBuy(!isBuy);
                             }
-                            } className='h-11 w-44 bg-green-600 text-white text-xl mb-4 rounded-xl disabled:bg-gray-500 disabled:text-gray-400' disabled={!approved && volume === 0? true : false}>BUY</button>
+                            } className='h-11 w-44 bg-green-600 text-white text-xl mb-4 rounded-xl disabled:bg-gray-500 disabled:text-gray-400' disabled={!approved || volume === 0? true : false}>BUY</button>
                             <button
                                 onClick={() => {
-                                transact(lastPrice);
+                                transact(latestPrice);
                                 setIsSell(!isSell);
                             }
                             }   className='h-11 w-44 bg-red-600 text-white text-xl rounded-xl disabled:bg-gray-500 disabled:text-gray-400'
-                                disabled={!approved && volume === 0? true : false}>
+                                disabled={!approved || volume === 0? true : false}>
                                 SELL
                             </button>
                 </div>}
