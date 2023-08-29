@@ -27,7 +27,7 @@ export default function AdminDashboard() {
     const [traderArray, settraderArray] = useState<object[]>([]);
 
     const fetchAdmin = async (): Promise<void> => {
-        const url = `http://0.0.0.0:3000/api/admins/${localStorage.getItem("adminId")}`;
+        const url = `http://127.0.0.1:3000/api/admins/${localStorage.getItem("adminId")}`;
 
         await axios.get(url).then((response) => {
             //console.log(response.data.data.relationships.traders.data);
@@ -35,7 +35,7 @@ export default function AdminDashboard() {
     }
 
     const fetchEveryTrader = async(): Promise<void> => {
-        const url = "http://0.0.0.0:3000/api/traders";
+        const url = "http://127.0.0.1:3000/api/traders";
 
         await axios.get(url).then((response => {
             /*console.log(response.data.data);*/
