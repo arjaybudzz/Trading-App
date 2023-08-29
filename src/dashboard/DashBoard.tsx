@@ -56,11 +56,10 @@ export default function DashBoard() {
 
 
         socket.addEventListener('open', (): void => {
-        if (ticker !== "") {
-            //socket.send(JSON.stringify({'type':'subscribe', 'symbol': ticker}));
-            socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'BINANCE:BTCUSDT'}));
-        }
-        //socket.send(JSON.stringify({'type':'subscribe', 'symbol': ''}));
+            if (ticker !== "") {
+                //socket.send(JSON.stringify({'type':'subscribe', 'symbol': ticker}));
+                socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'BINANCE:BTCUSDT'}));
+            }
         })
 
         socket.addEventListener('message', (event: MessageEvent<object>): void => {
@@ -171,6 +170,7 @@ export default function DashBoard() {
             }
         }).then((response: AxiosResponse<any, any>): void => {
             console.log(response);
+            setLastPrice(response.data.data.attributes.last_price);
         }).catch((errors: object): void => console.log(errors))
     }
 
@@ -204,7 +204,7 @@ export default function DashBoard() {
             }
         }).then((response: AxiosResponse<any, any>): void => {
             localStorage.setItem("tickerId", response.data.data.id);
-            setLastPrice(response.data.data.attributes.last_price);
+
         }).catch((error: object): void => console.log(error))
     }
 
@@ -418,17 +418,17 @@ export default function DashBoard() {
 
                         <div className='flex flex-col justify-between mb-6'>
                             <button onClick={() => {
-                                transact(lastPrice);
+                                transact(latestPrice);
                                 setIsBuy(!isBuy);
                             }
-                            } className='h-11 w-44 bg-green-600 text-white text-xl mb-4 rounded-xl disabled:bg-gray-500 disabled:text-gray-400' disabled={!approved && volume === 0? true : false}>BUY</button>
+                            } className='h-11 w-44 bg-green-600 text-white text-xl mb-4 rounded-xl disabled:bg-gray-500 disabled:text-gray-400' disabled={(!approved || volume === 0)? true : false}>BUY</button>
                             <button
                                 onClick={() => {
-                                transact(lastPrice);
+                                transact(latestPrice);
                                 setIsSell(!isSell);
                             }
                             }   className='h-11 w-44 bg-red-600 text-white text-xl rounded-xl disabled:bg-gray-500 disabled:text-gray-400'
-                                disabled={!approved && volume === 0? true : false}>
+                                disabled={(!approved || volume === 0)? true : false}>
                                 SELL
                             </button>
                 </div>}
