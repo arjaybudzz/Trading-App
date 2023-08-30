@@ -24,7 +24,7 @@ export default function Transactions(props: {[key: string]: any}): JSX.Element {
   }, [])
 
   return (
-    <div className='flex flex-col w-1/2 h-1/3 fixed self-center overflow-hidden bg-slate-800 z-50 bg-opacity-70 justify-center items-center overflow-y-scroll'>
+    <div className='flex flex-col w-1/2 h-1/3 self-center overflow-hidden bg-slate-800 z-50 bg-opacity-70 justify-center items-center overflow-y-scroll'>
         {transactionArray.map((element: {[key: string]: any}, index: number) => {
             return <div className='flex flex-row justify-between items-center bg-sky-500 w-[600px] h-1/2 mb-4 p-6 rounded-xl'>
                 <h1 className='text-3xl'>{element.action.toUpperCase()}</h1>
