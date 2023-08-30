@@ -10,7 +10,7 @@ interface Data {
   password: string,
 }
 
-export default function AdminLogin() {
+export default function AdminLogin(): JSX.Element {
   const [userInfo, setUserInfo] = useState<Data>({
     email: '',
     password: ''

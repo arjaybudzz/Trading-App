@@ -7,7 +7,7 @@ import { Line } from "react-chartjs-2";
 import { Confirmation } from './components/Confirmation';
 import TraderProfile from '../admin_dashboard/components/TraderProfile';
 
-export default function DashBoard() {
+export default function DashBoard(): JSX.Element {
 
     const [userName, setUserName] = useState<string>("");
     const [newsArray, setNewsArray] = useState<object[]>([]);

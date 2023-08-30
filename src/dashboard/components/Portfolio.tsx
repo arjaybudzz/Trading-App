@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import Transactions from './Transactions';
 
-export default function Portfolio(props: {[key: string]: any}) {
+export default function Portfolio(props: {[key: string]: any}): JSX.Element {
 
   const [showTransaction, setShowTransaction] = useState<boolean>(false);
   const [tickerId, setTickerId]= useState<number>(0);

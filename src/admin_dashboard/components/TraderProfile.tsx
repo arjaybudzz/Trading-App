@@ -15,7 +15,7 @@ interface Trader {
   balance: number
 }
 
-export default function TraderProfile(props: {[key: string]: any}) {
+export default function TraderProfile(props: {[key: string]: any}): JSX.Element {
   const [traderProfile, setTraderProfile] = useState<Trader>({
     userName: '',
     firstName: '',

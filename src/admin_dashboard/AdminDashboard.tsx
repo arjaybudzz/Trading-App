@@ -13,24 +13,14 @@ interface Trader {
     balance: number
 }
 
-export default function AdminDashboard() {
-    const [adminUserName, setAdminUserName] = useState<string>("");
-    const [trader, setTrader] = useState<Trader>({
-        userName: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        country: '',
-        approved: false,
-        balance: 0
-    })
+export default function AdminDashboard(): JSX.Element {
     const [traderArray, settraderArray] = useState<object[]>([]);
 
     const fetchAdmin = async (): Promise<void> => {
         const url = `https://trading-app-backend.onrender.com/api/admins/${localStorage.getItem("adminId")}`;
 
         await axios.get(url).then((response) => {
-            //console.log(response.data.data.relationships.traders.data);
+            console.log(response);
         }).catch(errors => console.log(errors))
     }
 

@@ -3,10 +3,8 @@ import axios from 'axios'
 import {useEffect, useState} from 'react';
 
 
-export default function Transactions(props: {[key: string]: any}) {
+export default function Transactions(props: {[key: string]: any}): JSX.Element {
   const [transactionArray, setTransactionArray] = useState<object[]>([]);
-
-
   const fetchTransactions = async(): Promise<void> => {
     const url: string = `https://trading-app-backend.onrender.com/api/tickers/${props.tickerId}`;
 
@@ -31,7 +29,7 @@ export default function Transactions(props: {[key: string]: any}) {
             return <div className='flex flex-row justify-between items-center bg-sky-500 w-[600px] h-1/2 mb-4 p-6 rounded-xl'>
                 <h1 className='text-3xl'>{element.action.toUpperCase()}</h1>
                 <h1 className='text-xl' style={{color: element.profit > 0? "green" : "red"}}>{element.profit > 0? "Profit" : "Loss"}: {element.profit}</h1>
-                <h1 className='text-xl' style={{color: parseFloat(element.percent) > 0? "green" : "red"}}>Percent: {parseFloat(element.percent).toFixed(2)}</h1>
+                <h1 className='text-xl' style={{color: element.percent > 0? "green" : "red"}}>Percent: {element.percent}</h1>
             </div>
         })}
     </div>

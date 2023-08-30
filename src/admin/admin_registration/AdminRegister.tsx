@@ -15,7 +15,7 @@ interface Admin {
   passwordConfirmation: string
 }
 
-export default function AdminRegister() {
+export default function AdminRegister(): JSX.Element {
   const [profile, setProfile] = useState<Admin>({
     userName: '',
     firstName: '',
