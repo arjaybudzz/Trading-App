@@ -12,8 +12,8 @@ export default function Transactions(props: {[key: string]: any}) {
 
     await axios.get(url).then((response) => {
       const transactionData = response.data.included;
-      const result = response;
-      console.log(result);
+      //const result = response;
+      //console.log(result);
       transactionData.map((element: {[key: string]: any}) => {
         console.log(element.attributes);
         setTransactionArray(transactionArray => [...transactionArray, element.attributes]);
@@ -31,7 +31,7 @@ export default function Transactions(props: {[key: string]: any}) {
             return <div className='flex flex-row justify-between items-center bg-sky-500 w-[600px] h-1/2 mb-4 p-6 rounded-xl'>
                 <h1 className='text-3xl'>{element.action.toUpperCase()}</h1>
                 <h1 className='text-xl' style={{color: element.profit > 0? "green" : "red"}}>{element.profit > 0? "Profit" : "Loss"}: {element.profit}</h1>
-                <h1 className='text-xl' style={{color: element.percent > 0? "green" : "red"}}>Percent: {element.percent}</h1>
+                <h1 className='text-xl' style={{color: parseFloat(element.percent) > 0? "green" : "red"}}>Percent: {parseFloat(element.percent).toFixed(2)}</h1>
             </div>
         })}
     </div>

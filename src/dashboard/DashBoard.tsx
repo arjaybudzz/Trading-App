@@ -19,7 +19,7 @@ export default function DashBoard() {
     const [portfolioArray, setPortfolioArray] = useState<object[]>([]);
     const [isBuy, setIsBuy] = useState<boolean>(false);
     const [isSell, setIsSell] = useState<boolean>(false);
-    const [ticker, setTicker] = useState<string>("JNJ");
+    const [ticker, setTicker] = useState<string>("");
     const [companyName, setCompanyName] = useState<string>("");
     const tickerArray: string[] = ["STAA", "KVUE", "JNJ", "MSFT", "NVDA", "BAC", "AAPL", "INTC", "PLTR", "AMZN", "PFE", "META", "LCID", "AIG", "WBD"];
     const [enterModal, setEnterModal] = useState<boolean>(false);
@@ -27,6 +27,8 @@ export default function DashBoard() {
     const [share, setShare] = useState<string>("1");
     const [showPortfolio, setShowPortfolio] = useState<boolean>(false);
     const [approved, setApproved] = useState<boolean>(false);
+    const [profit, setProfit] = useState<number>(0);
+    const [percent, setPercent] = useState<number>(0);
 
     const fetchTickerNews = async (stockSymbol: string): Promise<void> => {
         const url: string = `https://api.polygon.io/v2/reference/news?ticker=${stockSymbol}&apiKey=8MXftqYJltJ10de075dDr4h8EXwmeRys`;
@@ -124,8 +126,8 @@ export default function DashBoard() {
         .catch((errors: object): void => console.log(errors));
     }
 
-    const generateTIckerToken = async(): Promise<void> => {
-        const url = `http://127.0.0.1:3000/api/ticker_tokens?ticker[symbol]=${ticker}`;
+    const generateTIckerToken = async(stockName: string): Promise<void> => {
+        const url = `http://127.0.0.1:3000/api/ticker_tokens?ticker[symbol]=${stockName}`;
 
         await axios.post(url)
         .then((response: AxiosResponse<any, any>): void => {
@@ -189,11 +191,11 @@ export default function DashBoard() {
         }).catch((errors: object): void => console.log(errors))
     }
 
-    const acquireStock = async (): Promise<void> => {
+    const acquireStock = async (stockName: string): Promise<void> => {
         const url = "http://127.0.0.1:3000/api/tickers";
 
         await axios.post(url, {
-            symbol: ticker,
+            symbol: stockName,
             time_stamp: timeStamp.toString(),
             volume: volume,
             share: parseInt(share)
@@ -220,7 +222,9 @@ export default function DashBoard() {
                 "Authorization": `${localStorage.getItem("tickerToken")}`
             }
         }).then(response => {
-            console.log(response)
+            console.log(response.data.data.attributes.profit);
+            setProfit(response.data.data.attributes.profit);
+            setPercent(response.data.data.attributes.percent);
         }).catch(errors => console.log(errors))
     }
 
@@ -249,15 +253,15 @@ export default function DashBoard() {
         if (isBuy || isSell) {
             updateLatestPrice(latestPrice);
         }
-    })
+    }, [isBuy, isSell, latestPrice])
 
-    useEffect(() => {
-        fetchLatestBalance();
-    })
+    //useEffect(() => {
+    //    fetchLatestBalance();
+    //})
 
   return (
     <>
-    {enterModal && <Confirmation didBuy={isBuy} ticker={ticker} latestPrice={latestPrice} lastPrice={lastPrice} exitMethodFunction={() => setEnterModal(!enterModal)}/>}
+    {enterModal && <Confirmation didBuy={isBuy} ticker={ticker} profit={profit} exitMethodFunction={() => setEnterModal(!enterModal)} share={share}/>}
     <div className='flex flex-col w-screen h-screen bg-slate-800'>
         <nav className='flex flex-row justify-between items-center w-screen h-14 bg-yellow-500 p-4'>
             <div>
@@ -293,8 +297,7 @@ export default function DashBoard() {
                             <button className='text-white text-2xl'
                             onClick={() => {
                                 setTicker(ticker);
-                                acquireStock();
-                                generateTIckerToken();
+                                acquireStock(ticker);
                             }}>{ticker}</button>
                         </div>
                 })}
@@ -324,7 +327,7 @@ export default function DashBoard() {
                 <Line data={data} />
             </div>
             <div className='flex flex-col w-1/5 bg-slate-800 h-[550px] items-center'>
-                <div className='flex flex-col items-center h-[300px] w-full p-4 flex-wrap'>
+                {ticker !== ""? <div className='flex flex-col items-center h-[300px] w-full p-4 flex-wrap'>
                     <h1 className='text-xl text-white mb-4'>
                         {companyName}
                     </h1>
@@ -396,6 +399,12 @@ export default function DashBoard() {
                     </div>}
                 </div>
 
+                :
+                <div className='mb-6'>
+                    <h1 className='text-xl text-white'>Select a stock</h1>
+                </div>}
+
+
                 {!approved &&
                 <div className='w-full bg-gray-500 mb-6'>
                     <h1 className='text-md text-gray-300 text-center'>
@@ -420,12 +429,14 @@ export default function DashBoard() {
                             <button onClick={() => {
                                 transact(latestPrice);
                                 setIsBuy(!isBuy);
+                                generateTIckerToken(ticker);
                             }
                             } className='h-11 w-44 bg-green-600 text-white text-xl mb-4 rounded-xl disabled:bg-gray-500 disabled:text-gray-400' disabled={(!approved || volume === 0)? true : false}>BUY</button>
                             <button
                                 onClick={() => {
                                 transact(latestPrice);
                                 setIsSell(!isSell);
+                                generateTIckerToken(ticker);
                             }
                             }   className='h-11 w-44 bg-red-600 text-white text-xl rounded-xl disabled:bg-gray-500 disabled:text-gray-400'
                                 disabled={(!approved || volume === 0)? true : false}>

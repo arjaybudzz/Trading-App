@@ -6,7 +6,7 @@ export const Confirmation = (props: {[key: string]: any}): JSX.Element => {
                 TRANSACTION CLOSED
             </h1>
             <h1 className="text-2xl text-white">
-                You have {props.didBuy? "bought" : "sold"} {props.ticker} with a {props.latestPrice - props.lastPrice > 0? "profit" : "loss"} of {props.latestPrice - props.lastPrice}.
+                You have {props.didBuy? "bought" : "sold"} {props.share} {props.share > 0? "shares" : "share"} {props.ticker} with a {props.profit > 0? "profit" : "loss"} of ${props.profit}.
             </h1>
 
             <button onClick={props.exitMethodFunction} className="text-sky-500 text-xl underline">Close</button>
