@@ -44,7 +44,7 @@ export default function TraderProfile(props: {[key: string]: any}) {
   })
 
   const fetchTrader = async (): Promise<void> => {
-    const url = `http://127.0.0.1:3000/api/traders/${localStorage.getItem("traderId")}`;
+    const url = `https://trading-app-backend.onrender.com/api/traders/${localStorage.getItem("traderId")}`;
 
     await axios.get(url).then(response => {
       const mainData: {[key: string]: any} = response.data.data.attributes;

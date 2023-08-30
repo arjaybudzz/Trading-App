@@ -8,7 +8,7 @@ export default function Transactions(props: {[key: string]: any}) {
 
 
   const fetchTransactions = async(): Promise<void> => {
-    const url: string = `http://127.0.0.1:3000/api/tickers/${props.tickerId}`;
+    const url: string = `https://trading-app-backend.onrender.com/api/tickers/${props.tickerId}`;
 
     await axios.get(url).then((response) => {
       const transactionData = response.data.included;
