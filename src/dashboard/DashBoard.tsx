@@ -27,6 +27,7 @@ export default function DashBoard() {
     const [share, setShare] = useState<string>("1");
     const [showPortfolio, setShowPortfolio] = useState<boolean>(false);
     const [approved, setApproved] = useState<boolean>(false);
+    const [profit, setProfit] = useState<number>(0);
 
     const fetchTickerNews = async (stockSymbol: string): Promise<void> => {
         const url: string = `https://api.polygon.io/v2/reference/news?ticker=${stockSymbol}&apiKey=8MXftqYJltJ10de075dDr4h8EXwmeRys`;
