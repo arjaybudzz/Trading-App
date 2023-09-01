@@ -222,8 +222,7 @@ export default function DashBoard(): JSX.Element {
                 "Authorization": `${localStorage.getItem("tickerToken")}`
             }
         }).then(response => {
-            console.log(response.data.id);
-            setProfit(response.data.data.attributes.profit);
+            console.log(response);
             setPercent(response.data.data.attributes.percent);
             localStorage.setItem("transactionId", response.data.id)
         }).catch(errors => console.log(errors))

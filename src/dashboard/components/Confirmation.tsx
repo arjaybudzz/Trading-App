@@ -6,7 +6,7 @@ export const Confirmation = (props: {[key: string]: any}): JSX.Element => {
     const [profit, setProfit] = useState<number>(0);
 
     const fetchRecentTransaction = async(): Promise<void> => {
-        const url = `https://trading-app-backend.onrender.com/api/traders/${localStorage.getItem("traderId")}`;
+        const url = `https://trading-app-backend.onrender.com/api/transactions/${localStorage.getItem("transactionId")}`;
 
         await axios.get(url)
         .then(response => {
