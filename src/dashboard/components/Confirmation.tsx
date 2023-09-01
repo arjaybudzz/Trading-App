@@ -10,7 +10,7 @@ export const Confirmation = (props: {[key: string]: any}): JSX.Element => {
 
         await axios.get(url)
         .then(response => {
-            console.log(response.data.attributes.profit)
+            console.log(response)
             setProfit(response.data.attributes.profit)
         })
         .catch(errors => console.log(errors))
