@@ -223,9 +223,9 @@ export default function DashBoard(): JSX.Element {
             }
         }).then(response => {
             console.log(response.data.id);
-            localStorage.setItem("transactionId", response.data.id);
             setProfit(response.data.data.attributes.profit);
             setPercent(response.data.data.attributes.percent);
+            localStorage.setItem("transactionId", response.data.id)
         }).catch(errors => console.log(errors))
     }
 
@@ -238,7 +238,7 @@ export default function DashBoard(): JSX.Element {
         }
     }
 
-    useEffect(() => {   // refresh Trader when approved attribute is modified
+    useEffect(() => {
 
         fetchTrader();
     }, [])
@@ -262,7 +262,7 @@ export default function DashBoard(): JSX.Element {
 
   return (
     <>
-    {enterModal && <Confirmation didBuy={isBuy} ticker={ticker} profit={profit} exitMethodFunction={() => setEnterModal(!enterModal)} share={share}/>}
+    {enterModal && <Confirmation didBuy={isBuy} ticker={ticker} exitMethodFunction={() => setEnterModal(!enterModal)} share={share}/>}
     <div className='flex flex-col w-screen h-screen bg-slate-800'>
         <nav className='flex flex-row justify-between items-center w-screen h-14 bg-yellow-500 p-4'>
             <div>
@@ -275,7 +275,6 @@ export default function DashBoard(): JSX.Element {
                 <button
                 onClick={() => {
                     setShowPortfolio(!showPortfolio);
-                    fetchPortfolio();
                 }} className='text-xl font-semibold text-underlined'>
                     Portfolio
                 </button>
