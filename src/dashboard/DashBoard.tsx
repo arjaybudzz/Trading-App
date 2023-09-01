@@ -224,7 +224,7 @@ export default function DashBoard(): JSX.Element {
         }).then(response => {
             console.log(response);
             setPercent(response.data.data.attributes.percent);
-            localStorage.setItem("transactionId", response.data.id)
+            localStorage.setItem("transactionId", response.data.data.id)
         }).catch(errors => console.log(errors))
     }
 
